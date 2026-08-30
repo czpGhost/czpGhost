@@ -13,7 +13,7 @@
     </td>
     <td align="center" style="padding: 0 28px;">
       <h2>👋 Hi, I'm Ghost</h2>
-      <p><em>人文精神是 AI 的灵魂<br/>The human spirit is the soul of AI.</em></p>
+      <p><em>AI 全栈开发者<br/>Full-Stack AI Developer</em></p>
       <p>
         <img height="120em" src="https://streak-stats.demolab.com/?user=czpGhost&theme=radical&hide_border=true" alt="GitHub Streak" />
       </p>
