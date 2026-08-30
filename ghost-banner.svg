@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#8A2BE2" />
+      <stop offset="45%" stop-color="#FF00FF" />
+      <stop offset="80%" stop-color="#FF1493" />
+      <stop offset="100%" stop-color="#FF6B6B" />
+      <animate attributeName="x1" values="0%;100%" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="100%;0%" dur="6s" repeatCount="indefinite" />
+    </linearGradient>
+    <linearGradient id="shine" x1="-100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#8a8a8a" />
+      <stop offset="30%" stop-color="#e8e8e8" />
+      <stop offset="55%" stop-color="#ffffff" />
+      <stop offset="80%" stop-color="#d0d0d0" />
+      <stop offset="100%" stop-color="#6f6f6f" />
+      <animate attributeName="x1" values="-100%;200%" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="0%;300%" dur="3s" repeatCount="indefinite" />
+    </linearGradient>
+  </defs>
+
+  <path d="M0,196 C140,160 300,214 460,202 C610,191 730,150 880,194 C1010,232 1130,170 1200,182 L1200,220 L0,220 Z" fill="url(#bg)" />
+
+  <text x="600" y="130" text-anchor="middle" font-family="'Fira Code','Courier New',monospace" font-size="86" font-weight="700" letter-spacing="6" fill="url(#shine)">Ghost</text>
+</svg>

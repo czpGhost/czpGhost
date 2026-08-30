@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="120" viewBox="0 0 1200 120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B6B" />
+      <stop offset="30%" stop-color="#FF1493" />
+      <stop offset="70%" stop-color="#FF00FF" />
+      <stop offset="100%" stop-color="#8A2BE2" />
+      <animate attributeName="x1" values="0%;100%" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="100%;0%" dur="6s" repeatCount="indefinite" />
+    </linearGradient>
+  </defs>
+
+  <path d="M0,32 C140,72 300,8 460,24 C610,40 730,72 880,26 C1010,-16 1130,42 1200,30 L1200,120 L0,120 Z" fill="url(#bg)" />
+</svg>
