@@ -20,18 +20,42 @@ import ascii_face as af
 WIDTH = 80
 FONT = "Consolas, Menlo, 'Courier New', monospace"
 FS = 12          # font-size px
+TITLE_FS = 26    # 标题字号
 ADV = FS * 0.55  # 等宽字符前进宽
 ROW = 15         # 行高
 CW = WIDTH * ADV
 CANVAS_W = 620
-ART_Y0 = 46
+ART_Y0 = 64
 
 PAL = {
-    "dark": {"bg": "#0d1117", "border": "#30363d", "art": "#C0C0C0",
-             "title": "#58a6ff"},
-    "light": {"bg": "#ffffff", "border": "#d0d7de", "art": "#24292f",
-              "title": "#0969da"},
+    "dark": {"bg": "#0d1117", "border": "#30363d", "art": "#C0C0C0"},
+    "light": {"bg": "#ffffff", "border": "#d0d7de", "art": "#24292f"},
 }
+
+# 银色流光:高光矩形裁剪到文字形状 + CSS transform 扫描(GitHub img 内可播放)
+TITLE_Y = TITLE_FS + 8
+SILVER_DEFS = f"""
+<style>
+@keyframes silverflow {{
+  0%   {{ transform: translateX(-250px); }}
+  50%  {{ transform: translateX(250px); }}
+  100% {{ transform: translateX(-250px); }}
+}}
+.beam {{ animation: silverflow 3.5s ease-in-out infinite; }}
+</style>
+<defs>
+  <linearGradient id="silver" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#9aa0a6"/>
+    <stop offset="0.45" stop-color="#f5f7f9"/>
+    <stop offset="0.5" stop-color="#ffffff"/>
+    <stop offset="0.55" stop-color="#f5f7f9"/>
+    <stop offset="1" stop-color="#9aa0a6"/>
+  </linearGradient>
+  <clipPath id="titleclip">
+    <text x="{CANVAS_W / 2}" y="{TITLE_Y}" font-size="{TITLE_FS}" font-weight="bold" text-anchor="middle">czpGhost@github</text>
+  </clipPath>
+</defs>
+"""
 
 
 def main():
@@ -50,10 +74,14 @@ def main():
         parts = [
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{CANVAS_W}" height="{H}" '
             f'viewBox="0 0 {CANVAS_W} {H}" font-family="{FONT}">',
+            SILVER_DEFS,
             f'<rect x="0.5" y="0.5" width="{CANVAS_W - 1}" height="{H - 1}" rx="14" '
             f'fill="{p["bg"]}" stroke="{p["border"]}"/>',
-            f'<text x="{art_mid}" y="30" fill="{p["title"]}" font-size="15" '
+            f'<text x="{art_mid}" y="{TITLE_Y}" fill="#9aa0a6" font-size="{TITLE_FS}" '
             f'font-weight="bold" text-anchor="middle">czpGhost@github</text>',
+            f'<g clip-path="url(#titleclip)">'
+            f'<rect class="beam" x="{art_mid - 120}" y="0" width="240" height="40" fill="url(#silver)"/>'
+            f'</g>',
         ]
         for i, row in enumerate(rows):
             parts.append(
