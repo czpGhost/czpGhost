@@ -24,13 +24,13 @@ ADV = FS * 0.55  # 等宽字符前进宽
 ROW = 15         # 行高
 CW = WIDTH * ADV
 CANVAS_W = 620
-ART_Y0 = 76
+ART_Y0 = 46
 
 PAL = {
     "dark": {"bg": "#0d1117", "border": "#30363d", "art": "#C0C0C0",
-             "title": "#58a6ff", "sub": "#8b949e", "mail": "#ffa657"},
+             "title": "#58a6ff"},
     "light": {"bg": "#ffffff", "border": "#d0d7de", "art": "#24292f",
-              "title": "#0969da", "sub": "#57606a", "mail": "#953800"},
+              "title": "#0969da"},
 }
 
 
@@ -42,7 +42,7 @@ def main():
     rows = af.render_ascii(enhanced, crop, width=WIDTH, ramp_name="crisp",
                            invert=False, color=False).split("\n")
     n = len(rows)
-    H = ART_Y0 + n * ROW + 36
+    H = ART_Y0 + n * ROW + 24
     art_x = (CANVAS_W - CW) / 2
 
     for mode, p in PAL.items():
@@ -54,18 +54,12 @@ def main():
             f'fill="{p["bg"]}" stroke="{p["border"]}"/>',
             f'<text x="{art_mid}" y="30" fill="{p["title"]}" font-size="15" '
             f'font-weight="bold" text-anchor="middle">czpGhost@github</text>',
-            f'<text x="{art_mid}" y="52" fill="{p["sub"]}" font-size="12" '
-            f'text-anchor="middle">人文精神是 AI 的灵魂 · The human spirit is the soul of AI.</text>',
         ]
         for i, row in enumerate(rows):
             parts.append(
                 f'<text x="{art_x:.1f}" y="{ART_Y0 + i * ROW}" fill="{p["art"]}" '
                 f'font-size="{FS}" xml:space="preserve">{html.escape(row)}</text>'
             )
-        parts.append(
-            f'<text x="{art_mid}" y="{ART_Y0 + n * ROW + 22}" fill="{p["mail"]}" font-size="12" '
-            f'font-weight="bold" text-anchor="middle">✉ ghost.czp@gmail.com</text>'
-        )
         parts.append("</svg>")
         out = "\n".join(parts)
         Path(f"{mode}_mode.svg").write_text(out, encoding="utf-8")
