@@ -23,10 +23,16 @@
 <h2 align="center">📫 Contact</h2>
 
 <p align="center">
-  <a href="mailto:ghost.czp@gmail.com" style="text-decoration: none;">
-    <span style="background: linear-gradient(135deg, #EA4335, #C5221F); color: #ffffff !important; font-size: 1.4em; font-weight: 700; font-family: 'Segoe UI', sans-serif; padding: 12px 28px; border-radius: 12px; box-shadow: 0 4px 14px rgba(234, 67, 53, 0.4);">
-      ✉️ ghost.czp@gmail.com
-    </span>
+  <a href="mailto:ghost.czp@gmail.com">
+    <img src="https://img.shields.io/badge/ghost.czp@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="mailto:ghost.czp@outlook.com">
+    <img src="https://img.shields.io/badge/ghost.czp@outlook.com-0078D4?style=for-the-badge&logo=microsoftoutlook&logoColor=white" alt="Outlook" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="mailto:3213341985@qq.com">
+    <img src="https://img.shields.io/badge/3213341985@qq.com-12B7F5?style=for-the-badge&logo=tencentqq&logoColor=white" alt="QQ Mail" />
   </a>
 </p>
 
