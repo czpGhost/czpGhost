@@ -55,25 +55,14 @@
   <img src="https://img.shields.io/badge/Redis-FF4438?style=for-the-badge&logo=redis&logoColor=white" />
 </p>
 
-<h2 align="center">📈 Contribution Activity</h2>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/czpGhost/czpGhost/output/pacman-contribution-graph-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/czpGhost/czpGhost/output/pacman-contribution-graph.svg" />
-    <img alt="Pac-Man Contribution Graph" src="https://raw.githubusercontent.com/czpGhost/czpGhost/output/pacman-contribution-graph.svg" />
-  </picture>
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/profile-3d-contrib/profile-night-view.svg" alt="3D Contribution Calendar" />
-</p>
-
 <h2 align="center">📫 Contact</h2>
 
 <p align="center">
-  <strong>Email:</strong> <code>ghost.czp@gmail.com</code><br/>
-  <a href="mailto:ghost.czp@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" /></a>
+  <a href="mailto:ghost.czp@gmail.com" style="text-decoration: none;">
+    <span style="background: linear-gradient(135deg, #EA4335, #C5221F); color: #ffffff !important; font-size: 1.4em; font-weight: 700; font-family: 'Segoe UI', sans-serif; padding: 12px 28px; border-radius: 12px; box-shadow: 0 4px 14px rgba(234, 67, 53, 0.4);">
+      ✉️ ghost.czp@gmail.com
+    </span>
+  </a>
 </p>
 
 <p align="center">
