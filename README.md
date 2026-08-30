@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/ghost-banner.svg" alt="Ghost" />
+  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/ghost-banner.gif" alt="Ghost" />
 </p>
 
 <h1 align="center">👋 Hi, I'm Ghost</h1>
@@ -85,5 +85,5 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/ghost-footer.svg" alt="footer" />
+  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/ghost-footer.gif" alt="footer" />
 </p>
