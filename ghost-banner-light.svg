@@ -26,7 +26,7 @@
   <clipPath id="all"><rect width="1200" height="220" rx="0"/></clipPath>
   <clipPath id="gt"><text x="600.0" y="96" font-size="72" font-weight="bold" text-anchor="middle">Ghost</text></clipPath>
 </defs>
-<rect width="1200" height="220" fill="#f6f8fa"/>
+<rect width="1200" height="220" fill="#ffffff"/>
 <g clip-path="url(#all)">
   <g class="wave w0"><path d="M 0 150.0 Q 65.0 134.0 130.0 150.0 Q 195.0 166.0 260.0 150.0 Q 325.0 134.0 390.0 150.0 Q 455.0 166.0 520.0 150.0 Q 585.0 134.0 650.0 150.0 Q 715.0 166.0 780.0 150.0 Q 845.0 134.0 910.0 150.0 Q 975.0 166.0 1040.0 150.0 Q 1105.0 134.0 1170.0 150.0 Q 1235.0 166.0 1300.0 150.0 Q 1365.0 134.0 1430.0 150.0 Q 1495.0 166.0 1560.0 150.0" fill="none" stroke="url(#silversoft)" stroke-width="2" stroke-opacity="0.5" stroke-linecap="round"/></g><g class="wave w1"><path d="M 0 162.0 Q 80.0 142.0 160.0 162.0 Q 240.0 182.0 320.0 162.0 Q 400.0 142.0 480.0 162.0 Q 560.0 182.0 640.0 162.0 Q 720.0 142.0 800.0 162.0 Q 880.0 182.0 960.0 162.0 Q 1040.0 142.0 1120.0 162.0 Q 1200.0 182.0 1280.0 162.0 Q 1360.0 142.0 1440.0 162.0 Q 1520.0 182.0 1600.0 162.0" fill="none" stroke="url(#silversoft)" stroke-width="3" stroke-opacity="0.7" stroke-linecap="round"/></g><g class="wave w2"><path d="M 0 176.0 Q 100.0 152.0 200.0 176.0 Q 300.0 200.0 400.0 176.0 Q 500.0 152.0 600.0 176.0 Q 700.0 200.0 800.0 176.0 Q 900.0 152.0 1000.0 176.0 Q 1100.0 200.0 1200.0 176.0 Q 1300.0 152.0 1400.0 176.0 Q 1500.0 200.0 1600.0 176.0 Q 1700.0 152.0 1800.0 176.0" fill="none" stroke="url(#silversoft)" stroke-width="4" stroke-opacity="1.0" stroke-linecap="round"/></g>
   <g clip-path="url(#gt)"><rect class="beam" x="-320" y="0" width="640" height="140" fill="url(#silver)"/></g>

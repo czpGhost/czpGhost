@@ -48,7 +48,7 @@ def wave_path(width: int, base_y: float, amp: float, wavelength: float) -> str:
 
 def banner(theme: str) -> str:
     W, H = 1200, 220
-    bg = "#0d1117" if theme == "dark" else "#f6f8fa"
+    bg = "#0d1117" if theme == "dark" else "#ffffff"
     waves = []
     for i, (y, amp, wl, op, dur) in enumerate([
         (150, 16, 260, 0.5, 7), (162, 20, 320, 0.7, 9), (176, 24, 400, 1.0, 11),
@@ -85,7 +85,7 @@ def banner(theme: str) -> str:
 
 def footer(theme: str) -> str:
     W, H = 1200, 120
-    bg = "#0d1117" if theme == "dark" else "#f6f8fa"
+    bg = "#0d1117" if theme == "dark" else "#ffffff"
     waves = []
     for i, (y, amp, wl, op) in enumerate([
         (52, 12, 280, 0.55), (62, 16, 340, 0.8), (74, 18, 420, 1.0),
@@ -128,7 +128,7 @@ GRAD_FADE = """
 def main():
     # footer fade 渐变按主题适配底色
     fade_dark = GRAD_FADE
-    fade_light = GRAD_FADE.replace("#0d1117", "#f6f8fa").replace("#05070a", "#e4e8ec")
+    fade_light = GRAD_FADE.replace("#0d1117", "#ffffff").replace("#05070a", "#f0f2f4")
     outputs = {}
     for theme in ("dark", "light"):
         outputs[f"ghost-banner-{theme}.svg"] = banner(theme)
