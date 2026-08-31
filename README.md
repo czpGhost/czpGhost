@@ -25,11 +25,6 @@
         <a href="https://github.com/czpGhost"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=16&pause=1200&center=true&width=380&height=50&color=C0C0C0&lines=%E4%BA%BA%E6%96%87%E7%B2%BE%E7%A5%9E%E6%98%AF%20AI%20%E7%9A%84%E7%81%B5%E9%AD%82%E3%80%82;The+human+spirit+is+the+soul+of+AI." alt="人文精神是 AI 的灵魂" /></a>
       </p>
       <p>
-        <a href="https://openai.com"><img src="openai.svg" alt="OpenAI" height="28" /></a>
-        &nbsp;
-        <a href="https://www.anthropic.com"><img src="anthropic.svg" alt="Anthropic" height="28" /></a>
-      </p>
-      <p>
         <a href="https://www.python.org"><img src="python.svg" alt="Python" height="28" /></a>
         &nbsp;
         <a href="https://go.dev"><img src="go.svg" alt="Go" height="28" /></a>
