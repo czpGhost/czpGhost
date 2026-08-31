@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="120" viewBox="0 0 1200 120" font-family="Consolas, Menlo, 'Courier New', monospace">
+<style>
+@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-420px); } }
+@keyframes sweep { 0% { transform: translateX(-320px); } 50% { transform: translateX(320px); } 100% { transform: translateX(-320px); } }
+.wave { animation: drift 11s linear infinite; }
+.w0 { animation-duration: 15s; }
+.w1 { animation-duration: 11s; }
+.w2 { animation-duration: 8s; }
+.beam { animation: sweep 6s ease-in-out infinite; }
+</style>
+<defs>
+  <linearGradient id="silver" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#9aa0a6"/>
+    <stop offset="0.45" stop-color="#f5f7f9"/>
+    <stop offset="0.5" stop-color="#ffffff"/>
+    <stop offset="0.55" stop-color="#f5f7f9"/>
+    <stop offset="1" stop-color="#9aa0a6"/>
+  </linearGradient>
+  <linearGradient id="silversoft" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#6e7278" stop-opacity="0.9"/>
+    <stop offset="0.5" stop-color="#e8eaed" stop-opacity="0.9"/>
+    <stop offset="1" stop-color="#6e7278" stop-opacity="0.9"/>
+  </linearGradient>
+  <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0.45" stop-color="#0d1117" stop-opacity="0"/>
+    <stop offset="1" stop-color="#05070a" stop-opacity="0.85"/>
+  </linearGradient>
+  <clipPath id="all"><rect width="1200" height="120"/></clipPath>
+</defs>
+<rect width="1200" height="120" fill="#0d1117"/>
+<rect width="1200" height="120" fill="url(#fade)"/>
+<g clip-path="url(#all)">
+  <g class="wave w0"><path d="M 0 52.0 Q 70.0 40.0 140.0 52.0 Q 210.0 64.0 280.0 52.0 Q 350.0 40.0 420.0 52.0 Q 490.0 64.0 560.0 52.0 Q 630.0 40.0 700.0 52.0 Q 770.0 64.0 840.0 52.0 Q 910.0 40.0 980.0 52.0 Q 1050.0 64.0 1120.0 52.0 Q 1190.0 40.0 1260.0 52.0 Q 1330.0 64.0 1400.0 52.0 Q 1470.0 40.0 1540.0 52.0" fill="none" stroke="url(#silversoft)" stroke-width="2" stroke-opacity="0.55" stroke-linecap="round"/></g><g class="wave w1"><path d="M 0 62.0 Q 85.0 46.0 170.0 62.0 Q 255.0 78.0 340.0 62.0 Q 425.0 46.0 510.0 62.0 Q 595.0 78.0 680.0 62.0 Q 765.0 46.0 850.0 62.0 Q 935.0 78.0 1020.0 62.0 Q 1105.0 46.0 1190.0 62.0 Q 1275.0 78.0 1360.0 62.0 Q 1445.0 46.0 1530.0 62.0 Q 1615.0 78.0 1700.0 62.0" fill="none" stroke="url(#silversoft)" stroke-width="3" stroke-opacity="0.8" stroke-linecap="round"/></g><g class="wave w2"><path d="M 0 74.0 Q 105.0 56.0 210.0 74.0 Q 315.0 92.0 420.0 74.0 Q 525.0 56.0 630.0 74.0 Q 735.0 92.0 840.0 74.0 Q 945.0 56.0 1050.0 74.0 Q 1155.0 92.0 1260.0 74.0 Q 1365.0 56.0 1470.0 74.0 Q 1575.0 92.0 1680.0 74.0" fill="none" stroke="url(#silversoft)" stroke-width="4" stroke-opacity="1.0" stroke-linecap="round"/></g>
+</g>
+</svg>

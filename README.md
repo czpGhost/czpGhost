@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/ghost-banner-slow.gif" alt="Ghost" />
+  <img src="ghost-banner.svg" alt="Ghost" />
 </p>
 
 <div align="center">
@@ -48,5 +48,5 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/czpGhost/czpGhost/main/ghost-footer-slow.gif" alt="footer" />
+  <img src="ghost-footer.svg" alt="footer" />
 </p>
