@@ -15,7 +15,7 @@
       <h2>👋 Hi, I'm Ghost</h2>
       <p><em>AI 全栈开发者<br/>Full-Stack AI Developer</em></p>
       <p>
-        <img height="150em" src="https://streak-stats.demolab.com/?user=czpGhost&hide_border=true&border_radius=12&background=145,161b22,0d1117&ring=C0C0C0&fire=e8eaed&currStreakNum=e8eaed&currStreakLabel=C0C0C0&sideNums=9aa0a6&sideLabels=6e7278&dates=6e7278&stroke=30363d" alt="GitHub Streak" />
+        <img height="165em" src="https://github-stats-extended.vercel.app/api?username=czpGhost&show_icons=true&hide_border=true&bg_color=00000000&title_color=e8eaed&text_color=C0C0C0&icon_color=C0C0C0&rank_icon=github" alt="GitHub Stats" />
       </p>
       <p>
         <a href="https://github.com/czpGhost"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=16&pause=1200&center=true&width=380&height=50&color=C0C0C0&lines=%E4%BA%BA%E6%96%87%E7%B2%BE%E7%A5%9E%E6%98%AF%20AI%20%E7%9A%84%E7%81%B5%E9%AD%82%E3%80%82;The+human+spirit+is+the+soul+of+AI." alt="人文精神是 AI 的灵魂" /></a>
