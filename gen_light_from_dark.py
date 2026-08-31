@@ -2,7 +2,13 @@
 # requires-python = ">=3.10"
 # dependencies = ["numpy>=1.24.0", "opencv-python-headless<5.0.0", "pillow>=10.0.0"]
 # ///
-"""从 dark_mode.svg 反转生成 light_mode.svg: 符号镜像 + 透明度档位互换 + 墨色白底."""
+"""从 dark_mode.svg 反转生成 light_mode.svg.
+
+方案: 符号镜像 + 轮廓增强档位映射.
+- 符号按 crisp 密度轴镜像 (疏<->密), 使五官暗部在白底上由浓密笔画勾出.
+- 透明度向两端推: 背景纹理近白 (0.18/0.25), 五官浓墨但保留笔画感 (0.85, 非实心).
+- dark_mode.svg 是唯一事实源, 永不修改.
+"""
 from pathlib import Path
 import re
 import html
@@ -13,13 +19,11 @@ from ascii_face import RAMPS
 
 ramp = RAMPS["crisp"]
 n = len(ramp)
-print("权威 ramp len:", n)
 mirror = {c: ramp[n - 1 - i] for i, c in enumerate(ramp)}
-print("校验: & ->", repr(mirror["&"]), "W ->", repr(mirror["W"]), "o ->", repr(mirror["o"]), "! ->", repr(mirror["!"]))
 
 src = Path("dark_mode.svg").read_text(encoding="utf-8")
-# 对比增强: 中间档位向两端推, 白底上减少灰雾, 五官轮廓更锐
-OP_SWAP = {"1": "0.15", "0.7": "0.30", "0.45": "0.60", "0.25": "1"}
+# 轮廓增强: 五官密符 0.85(浓而有笔画感), 中间档大间隔, 背景近白
+OP_SWAP = {"1": "0.18", "0.7": "0.25", "0.45": "0.55", "0.25": "0.85"}
 
 
 def flip(m):
@@ -29,7 +33,7 @@ def flip(m):
     if om:
         attrs = attrs.replace(om.group(0), f'fill-opacity="{OP_SWAP[om.group(1)]}"')
     else:
-        attrs += ' fill-opacity="0.15"'
+        attrs += ' fill-opacity="0.18"'
     return "<tspan" + attrs + ">" + html.escape(flipped, quote=False) + "</tspan>"
 
 
@@ -41,7 +45,4 @@ for line in src.split("\n"):
 out = "\n".join(out_lines)
 out = out.replace('fill="#C0C0C0"', 'fill="#24292f"')
 Path("light_mode.svg").write_text(out, encoding="utf-8")
-
-m = re.search(r'<text x="145.0" y="52".*?</text>', out, re.S)
-print("行0:", m.group(0)[60:230])
-print("尺寸:", re.search(r'width="(\d+)" height="(\d+)"', out).groups())
+print("wrote light_mode.svg")
