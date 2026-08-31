@@ -28,7 +28,7 @@ dens = {c: i / (n - 1) for i, c in enumerate(ramp)}
 src = Path("dark_mode.svg").read_text(encoding="utf-8")
 
 BG_OP = "0.15"     # 背景墙洗白
-SOLID_OP = "0.90"  # 实体块浓墨
+SOLID_OP = "0.92"  # 实体块浓墨
 MIN_RUN = 10       # 连续纯密字符 >= 10 判为背景墙
 
 
@@ -46,11 +46,13 @@ def flip(m):
         is_bg = len(body) >= 6 and solid / len(body) >= 0.70
         new_op = BG_OP if is_bg else SOLID_OP
     else:
-        # 视觉角色保留: dark 里"显眼"的档位(0.7 亮纹理)在 light 里也显眼(浓墨),
-        # "含蓄"的档位(0.25 暗缝)在 light 里也含蓄(淡墨).
-        # 0.7 亮纹理(眼睑/鼻梁侧/唇面) -> 0.85 浓墨线; 0.25 暗缝(眼窝/嘴缝) -> 0.20 淡底纹;
-        # 0.45 过渡 -> 0.50
-        new_op = {"0.25": "0.20", "0.45": "0.50", "0.7": "0.85"}.get(op0, op0)
+        # v6: 灰阶连续化. dark 的四档在 light 上的对应浓淡必须拉开层次:
+        #   0.25 暗缝(眼窝/嘴缝) -> 0.42 (可见的淡墨, 不得与背景墙 0.15 混同)
+        #   0.45 过渡            -> 0.60
+        #   0.7  亮纹理(眼睑等)  -> 0.85 (浓墨线, 最显眼的笔触)
+        # 加上实体块 0.92 / 背景墙 0.15, 五档灰阶: 0.15 < 0.35 < 0.60 < 0.85 < 0.92
+        # 0.25(暗缝面)用 0.35: 保持"暗晕"低于眼睑"线条" 0.85 的显眼度, 不抢轮廓
+        new_op = {"0.25": "0.35", "0.45": "0.60", "0.7": "0.85"}.get(op0, op0)
     return '<tspan fill-opacity="{}">{}</tspan>'.format(
         new_op, html.escape(flipped, quote=False)
     )
