@@ -18,6 +18,21 @@ GRAD = """
     <stop offset="1" stop-color="#6e7278" stop-opacity="0.9"/>
   </linearGradient>"""
 
+# 浅色主题: 深墨字 + 深灰波浪, 保证浅底可读
+GRAD_LIGHT = """
+  <linearGradient id="silver" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#8b949e"/>
+    <stop offset="0.45" stop-color="#4b5560"/>
+    <stop offset="0.5" stop-color="#24292f"/>
+    <stop offset="0.55" stop-color="#4b5560"/>
+    <stop offset="1" stop-color="#8b949e"/>
+  </linearGradient>
+  <linearGradient id="silversoft" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#9aa0a6" stop-opacity="0.9"/>
+    <stop offset="0.5" stop-color="#57606a" stop-opacity="0.9"/>
+    <stop offset="1" stop-color="#9aa0a6" stop-opacity="0.9"/>
+  </linearGradient>"""
+
 # 波浪 path: 一条完整正弦周期, 拼两倍宽做无缝横移循环
 def wave_path(width: int, base_y: float, amp: float, wavelength: float) -> str:
     seg = wavelength / 2
@@ -31,8 +46,9 @@ def wave_path(width: int, base_y: float, amp: float, wavelength: float) -> str:
     return f"M 0 {base_y:.1f} " + " ".join(pts)
 
 
-def banner() -> str:
+def banner(theme: str) -> str:
     W, H = 1200, 220
+    bg = "#0d1117" if theme == "dark" else "#f6f8fa"
     waves = []
     for i, (y, amp, wl, op, dur) in enumerate([
         (150, 16, 260, 0.5, 7), (162, 20, 320, 0.7, 9), (176, 24, 400, 1.0, 11),
@@ -54,22 +70,22 @@ def banner() -> str:
 .beam {{ animation: sweep 6s ease-in-out infinite; }}
 .gt {{ animation: glow 6s ease-in-out infinite; }}
 </style>
-<defs>{GRAD}
+<defs>{GRAD if theme == "dark" else GRAD_LIGHT}
   <clipPath id="all"><rect width="{W}" height="{H}" rx="0"/></clipPath>
   <clipPath id="gt"><text x="{W / 2}" y="96" font-size="72" font-weight="bold" text-anchor="middle">Ghost</text></clipPath>
 </defs>
-<rect width="{W}" height="{H}" fill="#0d1117"/>
+<rect width="{W}" height="{H}" fill="{bg}"/>
 <g clip-path="url(#all)">
   {''.join(waves)}
   <g clip-path="url(#gt)"><rect class="beam" x="-320" y="0" width="640" height="140" fill="url(#silver)"/></g>
-  <text class="gt" x="{W / 2}" y="96" font-size="72" font-weight="bold" text-anchor="middle" fill="#e8eaed" fill-opacity="0.35">Ghost</text>
+  <text class="gt" x="{W / 2}" y="96" font-size="72" font-weight="bold" text-anchor="middle" fill="{'#e8eaed' if theme == 'dark' else '#24292f'}" fill-opacity="{'0.35' if theme == 'dark' else '0.5'}">Ghost</text>
 </g>
 </svg>
 """
 
-
-def footer() -> str:
+def footer(theme: str) -> str:
     W, H = 1200, 120
+    bg = "#0d1117" if theme == "dark" else "#f6f8fa"
     waves = []
     for i, (y, amp, wl, op) in enumerate([
         (52, 12, 280, 0.55), (62, 16, 340, 0.8), (74, 18, 420, 1.0),
@@ -89,10 +105,10 @@ def footer() -> str:
 .w2 {{ animation-duration: 8s; }}
 .beam {{ animation: sweep 6s ease-in-out infinite; }}
 </style>
-<defs>{GRAD}
+<defs>{GRAD if theme == "dark" else GRAD_LIGHT}
   <clipPath id="all"><rect width="{W}" height="{H}"/></clipPath>
 </defs>
-<rect width="{W}" height="{H}" fill="#0d1117"/>
+<rect width="{W}" height="{H}" fill="{bg}"/>
 <rect width="{W}" height="{H}" fill="url(#fade)"/>
 <g clip-path="url(#all)">
   {''.join(waves)}
@@ -110,12 +126,18 @@ GRAD_FADE = """
 
 
 def main():
-    b = banner()
-    # banner 与 footer 共用 GRAD, footer 额外需要 fade 渐变
-    f = footer().replace("<defs>" + GRAD, "<defs>" + GRAD + GRAD_FADE)
-    Path("ghost-banner.svg").write_text(b, encoding="utf-8")
-    Path("ghost-footer.svg").write_text(f, encoding="utf-8")
-    print("wrote ghost-banner.svg / ghost-footer.svg")
+    # footer fade 渐变按主题适配底色
+    fade_dark = GRAD_FADE
+    fade_light = GRAD_FADE.replace("#0d1117", "#f6f8fa").replace("#05070a", "#e4e8ec")
+    outputs = {}
+    for theme in ("dark", "light"):
+        outputs[f"ghost-banner-{theme}.svg"] = banner(theme)
+        outputs[f"ghost-footer-{theme}.svg"] = footer(theme).replace(
+            "<defs>" + GRAD, "<defs>" + GRAD + (fade_dark if theme == "dark" else fade_light)
+        )
+    for name, content in outputs.items():
+        Path(name).write_text(content, encoding="utf-8")
+        print("wrote", name)
 
 
 if __name__ == "__main__":

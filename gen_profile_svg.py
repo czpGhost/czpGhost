@@ -26,7 +26,8 @@ ADV = FS * 0.55  # 等宽字符前进宽
 ROW = 15         # 行高
 CW = WIDTH * ADV
 CANVAS_W = 620
-ART_Y0 = 64
+ART_Y0 = 52   # 与 dark_mode.svg 定稿一致: 标题 y=34, 艺术行自 y=52 起
+N_ROWS_TARGET = 40  # dark 卡 40 行艺术, 高 662px; light 必须同几何避免 <picture> 切换跳动
 
 PAL = {
     # 只生成 light 卡; dark_mode.svg 为用户定稿版本, 本脚本不再触碰
@@ -66,16 +67,25 @@ def main():
     crop, fb, eyes = af.detect_and_crop_face(img)
     enhanced = af.enhance_facial_details(crop, face_bbox=fb, eye_bboxes=eyes, brow_soft=1.5)
     # invert 按底色定: light 白底用 True (暗->密), dark 深底用 False (亮->密)
-    rows_by_mode = {
-        m: af.render_ascii(enhanced, crop, width=WIDTH, ramp_name="crisp",
-                           invert=(m == "light"), color=False).split("\n")
-        for m in PAL
-    }
-    N_ROWS = len(next(iter(rows_by_mode.values())))
+    # aspect_ratio 微调使行数 = N_ROWS_TARGET (与 dark 卡一致)
+    crop_h, crop_w = enhanced.shape
+    ar = 0.52
+    est = int((crop_h / crop_w) * WIDTH * ar)
+    if est != N_ROWS_TARGET:
+        ar = ar * N_ROWS_TARGET / est
+    rows = af.render_ascii(enhanced, crop, width=WIDTH, ramp_name="crisp",
+                           invert=True, color=False, aspect_ratio=ar).split("\n")
+    if len(rows) > N_ROWS_TARGET:  # 多余行从两侧对称裁掉(通常是上下留白)
+        extra = len(rows) - N_ROWS_TARGET
+        top, bot = extra // 2, extra - extra // 2
+        rows = rows[top:len(rows) - bot or None]
+    elif len(rows) < N_ROWS_TARGET:
+        rows += ["`" * WIDTH] * (N_ROWS_TARGET - len(rows))
+    N_ROWS = len(rows)
     # 与渲染同网格的每格亮度, 供分级不透明度使用
     vals = cv2.resize(enhanced, (WIDTH, N_ROWS), interpolation=cv2.INTER_AREA).astype(np.float32)
     n = N_ROWS
-    H = ART_Y0 + n * ROW + 24
+    H = ART_Y0 + n * ROW + 10
     art_x = (CANVAS_W - CW) / 2
 
     for mode, p in PAL.items():
@@ -97,7 +107,7 @@ def main():
             # 四档不透明度: 暗(五官/发丝)最实 -> 亮(背景)几乎隐形, 灰阶过渡更平滑
             t4 = np.clip(np.floor((3 - vals[i] / 255.0 * 4)), 0, 3).astype(int)
             segs, run_t, run_c = [], None, []
-            row = rows_by_mode[mode][i]
+            row = rows[i]
             for c in range(WIDTH):
                 t = None if row[c] == " " else int(t4[c])
                 if t != run_t:

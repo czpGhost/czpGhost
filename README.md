@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="ghost-banner.svg" alt="Ghost" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="ghost-banner-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="ghost-banner-light.svg" />
+    <img src="ghost-banner-dark.svg" alt="Ghost" />
+  </picture>
 </p>
 
 <div align="center">
@@ -19,9 +23,6 @@
       </p>
       <p>
         <a href="https://github.com/czpGhost"><img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=16&pause=1200&center=true&width=380&height=50&color=C0C0C0&lines=%E4%BA%BA%E6%96%87%E7%B2%BE%E7%A5%9E%E6%98%AF%20AI%20%E7%9A%84%E7%81%B5%E9%AD%82%E3%80%82;The+human+spirit+is+the+soul+of+AI." alt="人文精神是 AI 的灵魂" /></a>
-      </p>
-      <p>
-        <img src="https://visitor-badge.laobi.icu/badge?page_id=czpGhost.czpGhost" alt="visitor badge" />
       </p>
       <p>
         <a href="https://openai.com"><img src="openai.svg" alt="OpenAI" height="28" /></a>
@@ -56,5 +57,9 @@
 </p>
 
 <p align="center">
-  <img src="ghost-footer.svg" alt="footer" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="ghost-footer-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="ghost-footer-light.svg" />
+    <img src="ghost-footer-dark.svg" alt="footer" />
+  </picture>
 </p>
