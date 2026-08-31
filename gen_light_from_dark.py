@@ -33,28 +33,24 @@ MIN_RUN = 10       # 连续纯密字符 >= 10 判为背景墙
 
 
 def flip(m):
+    """逐字符负片: light 墨覆盖 = 1 - dark 银覆盖.
+
+    dark 银覆盖 = dens(字符) × op0 (银字在深底上的亮度贡献).
+    light 同位置查 ramp 找墨覆盖最接近 (1 - 银覆盖) 的字符.
+    明暗结构逐字符像素级保持, 不做档位映射.
+    """
     attrs, body = m.group(1), html.unescape(m.group(2))
     om = re.search(r'fill-opacity="([\d.]+)"', attrs)
-    op0 = om.group(1) if om else "1"
-    flipped = "".join(
-        (c if c == " " else mirror.get(c, c)) for c in body
-    )  # 空格保持空格: 空白是构图的一部分, 镜像会把它变成 $ 墨块
-    if op0 == "1":
-        # 实体块判据: 原始 body 中密度>0.8 的字符占比 >= 70% 且长度>=6
-        # 背景墙 = 长纯密游程(无疏符掺杂) -> 洗白; 西装/五官亮面有过渡字符掺杂 -> 保留浓墨
-        solid = sum(1 for c in body if dens.get(c, 0) > 0.80)
-        is_bg = len(body) >= 6 and solid / len(body) >= 0.70
-        new_op = BG_OP if is_bg else SOLID_OP
-    else:
-        # v6: 灰阶连续化. dark 的四档在 light 上的对应浓淡必须拉开层次:
-        #   0.25 暗缝(眼窝/嘴缝) -> 0.42 (可见的淡墨, 不得与背景墙 0.15 混同)
-        #   0.45 过渡            -> 0.60
-        #   0.7  亮纹理(眼睑等)  -> 0.85 (浓墨线, 最显眼的笔触)
-        # 加上实体块 0.92 / 背景墙 0.15, 五档灰阶: 0.15 < 0.35 < 0.60 < 0.85 < 0.92
-        # 0.25(暗缝面)用 0.35: 保持"暗晕"低于眼睑"线条" 0.85 的显眼度, 不抢轮廓
-        new_op = {"0.25": "0.35", "0.45": "0.60", "0.7": "0.85"}.get(op0, op0)
-    return '<tspan fill-opacity="{}">{}</tspan>'.format(
-        new_op, html.escape(flipped, quote=False)
+    op0 = float(om.group(1)) if om else 1.0
+    out = []
+    for c in body:
+        if c == " ":
+            out.append(" ")
+            continue
+        ink = 1.0 - dens.get(c, 0.0) * op0  # 目标墨覆盖
+        out.append(ramp[round(ink * (n - 1))])
+    return '<tspan fill-opacity="1">{}</tspan>'.format(
+        html.escape("".join(out), quote=False)
     )
 
 
