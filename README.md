@@ -22,10 +22,18 @@
       </p>
       <p>
         <img src="https://visitor-badge.laobi.icu/badge?page_id=czpGhost.czpGhost" alt="visitor badge" />
-        ·
-        <img src="https://img.shields.io/github/followers/czpGhost?label=Followers&style=social" alt="followers" />
-        ·
-        <img src="https://img.shields.io/github/stars/czpGhost?label=Total%20Stars&style=social" alt="stars" />
+      </p>
+      <p>
+        <a href="https://openai.com"><img src="openai.svg" alt="OpenAI" height="28" /></a>
+        &nbsp;
+        <a href="https://www.anthropic.com"><img src="anthropic.svg" alt="Anthropic" height="28" /></a>
+      </p>
+      <p>
+        <a href="https://www.python.org"><img src="python.svg" alt="Python" height="28" /></a>
+        &nbsp;
+        <a href="https://go.dev"><img src="go.svg" alt="Go" height="28" /></a>
+        &nbsp;
+        <a href="https://www.rust-lang.org"><img src="rust.svg" alt="Rust" height="28" /></a>
       </p>
     </td>
   </tr></table>
