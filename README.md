@@ -34,13 +34,19 @@
         &nbsp;
         <a href="https://go.dev"><img src="go.svg" alt="Go" height="28" /></a>
         &nbsp;
-        <a href="https://www.rust-lang.org"><img src="rust.svg" alt="Rust" height="28" /></a>
+        <a href="https://www.rust-lang.org"><picture><source media="(prefers-color-scheme: dark)" srcset="rust-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="rust-light.svg" /><img src="rust-light.svg" alt="Rust" height="28" /></picture></a>
       </p>
     </td>
   </tr></table>
 </div>
 
 <h3 align="center">📫 Contact</h3>
+
+<p align="center">
+  <span style="display:inline-block; margin:4px 10px; vertical-align:middle;">
+    <img src="wechat.svg" alt="WeChat" width="22" style="vertical-align:middle;" />&nbsp;<b>微信公众号：Ghost AGI</b>
+  </span>
+</p>
 
 <p align="center">
   <a href="mailto:ghost.czp@gmail.com" style="display:inline-block; margin:4px 10px; vertical-align:middle;">
