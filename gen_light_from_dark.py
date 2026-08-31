@@ -36,7 +36,9 @@ def flip(m):
     attrs, body = m.group(1), html.unescape(m.group(2))
     om = re.search(r'fill-opacity="([\d.]+)"', attrs)
     op0 = om.group(1) if om else "1"
-    flipped = "".join(mirror.get(c, c) for c in body)
+    flipped = "".join(
+        (c if c == " " else mirror.get(c, c)) for c in body
+    )  # 空格保持空格: 空白是构图的一部分, 镜像会把它变成 $ 墨块
     if op0 == "1":
         # 实体块判据: 原始 body 中密度>0.8 的字符占比 >= 70% 且长度>=6
         # 背景墙 = 长纯密游程(无疏符掺杂) -> 洗白; 西装/五官亮面有过渡字符掺杂 -> 保留浓墨
@@ -44,8 +46,11 @@ def flip(m):
         is_bg = len(body) >= 6 and solid / len(body) >= 0.70
         new_op = BG_OP if is_bg else SOLID_OP
     else:
-        swap = {"0.25": "0.85", "0.45": "0.55", "0.7": "0.45"}
-        new_op = swap.get(op0, op0)
+        # 视觉角色保留: dark 里"显眼"的档位(0.7 亮纹理)在 light 里也显眼(浓墨),
+        # "含蓄"的档位(0.25 暗缝)在 light 里也含蓄(淡墨).
+        # 0.7 亮纹理(眼睑/鼻梁侧/唇面) -> 0.85 浓墨线; 0.25 暗缝(眼窝/嘴缝) -> 0.20 淡底纹;
+        # 0.45 过渡 -> 0.50
+        new_op = {"0.25": "0.20", "0.45": "0.50", "0.7": "0.85"}.get(op0, op0)
     return '<tspan fill-opacity="{}">{}</tspan>'.format(
         new_op, html.escape(flipped, quote=False)
     )
