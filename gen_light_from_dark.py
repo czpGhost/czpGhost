@@ -18,7 +18,8 @@ mirror = {c: ramp[n - 1 - i] for i, c in enumerate(ramp)}
 print("校验: & ->", repr(mirror["&"]), "W ->", repr(mirror["W"]), "o ->", repr(mirror["o"]), "! ->", repr(mirror["!"]))
 
 src = Path("dark_mode.svg").read_text(encoding="utf-8")
-OP_SWAP = {"0.25": "1", "0.45": "0.7", "0.7": "0.45", "1": "0.25"}
+# 对比增强: 中间档位向两端推, 白底上减少灰雾, 五官轮廓更锐
+OP_SWAP = {"1": "0.15", "0.7": "0.30", "0.45": "0.60", "0.25": "1"}
 
 
 def flip(m):
@@ -28,7 +29,7 @@ def flip(m):
     if om:
         attrs = attrs.replace(om.group(0), f'fill-opacity="{OP_SWAP[om.group(1)]}"')
     else:
-        attrs += ' fill-opacity="0.25"'
+        attrs += ' fill-opacity="0.15"'
     return "<tspan" + attrs + ">" + html.escape(flipped, quote=False) + "</tspan>"
 
 
