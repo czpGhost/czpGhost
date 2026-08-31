@@ -39,11 +39,6 @@ for line in src.split("\n"):
     out_lines.append(line)
 out = "\n".join(out_lines)
 out = out.replace('fill="#C0C0C0"', 'fill="#24292f"')
-out = out.replace('fill="#9aa0a6"', 'fill="#57606a"')
-out = out.replace(
-    "</style>",
-    '</style>\n<rect x="0.5" y="0.5" width="619" height="661" rx="14" fill="#ffffff" stroke="#d0d7de"/>',
-)
 Path("light_mode.svg").write_text(out, encoding="utf-8")
 
 m = re.search(r'<text x="145.0" y="52".*?</text>', out, re.S)
